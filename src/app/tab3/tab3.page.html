@@ -1,28 +1,52 @@
-<ion-header>
-  
-    <ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-title><p align="center">
       Contacts
-    </ion-title>
- 
+   </p> </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="addUser()">
+        <ion-icon slot="icon-only" name="add" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
 </ion-header>
+<ion-content fullscreen class="component-content">
+<ion-accordion-group *ngFor="let contact of contactlist; let i = index">
+  <ion-accordion value="contacts">
+    <ion-item slot="header">
+      <ion-item-sliding>
+        <ion-item-options side="start">
+          <ion-item-option color="danger" (click)="confirmation(i)"><ion-icon size="large" name="trash"></ion-icon></ion-item-option>
+          <ion-item-option color="secondary" (click)="sendMessage(i)">  <ion-icon size="large" name="mail"></ion-icon></ion-item-option>
+        </ion-item-options>
+    
+        <ion-item>
+            <ion-thumbnail slot="start">
+            <img src="assets/avatar.jpg">
+            </ion-thumbnail>
+          <ion-label >{{ contact.name }}</ion-label>
+        </ion-item>
+    </ion-item-sliding>
+    </ion-item>
 
-<ion-content class="card=background-page">
-
-  <ion-card>
-    <img src="assets/phone.jpg"/>
-    <div class="card-title">Mobile #:</div>
-    <div class="card-subtitle">09510247931</div>
-  </ion-card>
-
-  <ion-card>
-    <img src="assets/facebook.jpg"/>
-    <div class="card-title">Facebook page:</div>
-    <div class="card-subtitle">Kaye Macabenta Rotairo</div>
-  </ion-card>
-
-  <ion-card>
-    <img src="assets/email.jpg"/>
-    <div class="card-title">Gmail Account:</div>
-    <div class="card-subtitle">roeland.rotairo@evsu.edu.ph</div>
-  </ion-card>
-</ion-content>
+    <ion-list slot="content">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          </ion-thumbnail>
+        <ion-label>{{ contact.address }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          </ion-thumbnail>
+        <ion-label >{{ contact.email }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          </ion-thumbnail>
+        <ion-label>{{ contact.number }}</ion-label>
+      </ion-item>
+      
+    </ion-list>
+  </ion-accordion>
+  </ion-accordion-group>
